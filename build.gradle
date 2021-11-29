@@ -29,8 +29,13 @@ dependencies {
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("javax.annotation:javax.annotation-api")
     runtimeOnly("ch.qos.logback:logback-classic")
-    runtimeOnly("com.h2database:h2")
     implementation("io.micronaut:micronaut-validation")
+    annotationProcessor "org.projectlombok:lombok"
+    testAnnotationProcessor "org.projectlombok:lombok"
+    compileOnly "org.projectlombok:lombok"
+    implementation("io.micronaut.flyway:micronaut-flyway")
+
+    runtimeOnly "org.mariadb.jdbc:mariadb-java-client"
 
 }
 
@@ -39,7 +44,8 @@ application {
     mainClass.set("optimistic.lock.Application")
 }
 java {
-    sourceCompatibility = JavaVersion.toVersion("17")
-    targetCompatibility = JavaVersion.toVersion("17")
+    sourceCompatibility = JavaVersion.toVersion("16")
+    targetCompatibility = JavaVersion.toVersion("16")
 }
+
 

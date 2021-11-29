@@ -9,11 +9,31 @@ import jakarta.inject.Inject
 class OptimisticLockSpec extends Specification {
 
     @Inject
-    EmbeddedApplication<?> application
+    ParentRepo parentRepo
+
+    @Inject
+    ChildRepo childRepo
+
+    void setup() {
+        def parent = Parent.populate()
+        parentRepo.saveAndFlush(parent)
+    }
 
     void 'test it works'() {
-        expect:
-        application.running
+        given:
+        def persistedChild = childRepo.findAll()[0]
+        def persistedParent = parentRepo.findAll()[0]
+
+        when:
+        def before = childRepo.findAll().size()
+        persistedParent.children.remove(persistedChild)
+        parentRepo.saveAndFlush(persistedParent)
+
+        then:
+        noExceptionThrown()
+
+        and:
+        childRepo.findAll().size() < before
     }
 
 }
