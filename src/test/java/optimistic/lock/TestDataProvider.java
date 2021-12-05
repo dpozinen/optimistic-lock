@@ -25,10 +25,7 @@ public class TestDataProvider {
         var question = new ImageSingleChoiceQuestion();
         question.setAnswerOptions(List.of(option));
 
-        // this is the problematic statement. If you change the line below,
-        // things will start to fail again
-        //question.setValidAnswer(option);
-        question.setValidAnswer(new AnswerOption());
+        question.setValidAnswer(option);
 
         var game = new Game();
         game.setQuestions(List.of(question));
