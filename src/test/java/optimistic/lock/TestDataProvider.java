@@ -27,8 +27,8 @@ public class TestDataProvider {
 
         // this is the problematic statement. If you change the line below,
         // things will start to fail again
-        question.setValidAnswer(option);
-        //question.setValidAnswer(new AnswerOption());
+        //question.setValidAnswer(option);
+        question.setValidAnswer(new AnswerOption());
 
         var game = new Game();
         game.setQuestions(List.of(question));
