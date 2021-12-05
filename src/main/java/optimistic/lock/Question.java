@@ -17,12 +17,11 @@ import optimistic.lock.answeroption.AnswerOption;
 
 @Setter
 @Getter
-@Entity
 @ToString
+@Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "question")
 public abstract class Question extends BaseEntity {
-
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   @ToString.Exclude

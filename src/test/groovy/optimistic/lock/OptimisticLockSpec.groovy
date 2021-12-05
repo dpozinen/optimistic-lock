@@ -5,12 +5,13 @@ import io.micronaut.test.extensions.spock.annotation.MicronautTest
 import jakarta.inject.Inject
 import optimistic.lock.answeroption.AnswerOption
 import optimistic.lock.image.ImageSingleChoiceQuestion
+import spock.lang.Ignore
 import spock.lang.Shared
 import spock.lang.Specification
 
 import java.util.concurrent.ThreadLocalRandom
 
-@MicronautTest
+//@MicronautTest
 class OptimisticLockSpec extends Specification {
 
     @Inject
@@ -51,6 +52,7 @@ class OptimisticLockSpec extends Specification {
 //        gameRepository.saveAndFlush(persistedG)
     }
 
+    @Ignore
     void 'test it works'() {
         given:
         Game game = gameRepository.findById(gameId).orElseThrow()

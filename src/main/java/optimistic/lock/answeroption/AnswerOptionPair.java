@@ -10,13 +10,13 @@ import lombok.Setter;
 import lombok.ToString;
 import optimistic.lock.BaseEntity;
 
-@Entity
-@Table(name = "answer_option_pair")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "answer_option_pair")
 public class AnswerOptionPair extends BaseEntity {
 
   @OneToOne

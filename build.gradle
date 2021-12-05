@@ -34,7 +34,7 @@ dependencies {
     testAnnotationProcessor "org.projectlombok:lombok"
     compileOnly "org.projectlombok:lombok"
     implementation("io.micronaut.flyway:micronaut-flyway")
-
+    testImplementation "org.testcontainers:mariadb:1.16.2"
     runtimeOnly "org.mariadb.jdbc:mariadb-java-client"
 
 }
