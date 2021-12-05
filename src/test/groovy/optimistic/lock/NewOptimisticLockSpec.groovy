@@ -1,5 +1,7 @@
 package optimistic.lock
 
+import optimistic.lock.answeroption.AnswerOption
+import optimistic.lock.image.ImageSingleChoiceQuestion
 import optimistic.lock.testframework.ApplicationContextSpecification
 import optimistic.lock.testframework.testcontainers.MariaDbFixture
 
@@ -46,6 +48,10 @@ class NewOptimisticLockSpec extends ApplicationContextSpecification
         Game game = gameRepository.findById(testGame.getId()).orElseThrow()
         and:
         Question question = testGame.questions.first()
+        assert question != null
+        and:
+        def validAnswer = ((ImageSingleChoiceQuestion)question).getValidAnswer()
+        assert validAnswer != null
 
         when:
         gameTestSvc.removeQuestionFromGame(game.getId(), question.getId())
@@ -54,5 +60,7 @@ class NewOptimisticLockSpec extends ApplicationContextSpecification
         noExceptionThrown()
         and:
         0 == entityManager.find(Game.class, game.getId()).getQuestions().size()
+        and:
+        null == entityManager.find(AnswerOption.class, validAnswer.getId())
     }
 }
