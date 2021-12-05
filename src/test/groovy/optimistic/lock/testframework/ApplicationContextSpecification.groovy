@@ -7,9 +7,9 @@ import spock.lang.Specification
 
 abstract class ApplicationContextSpecification
         extends Specification
-        implements ConfigurationFixture, EnvironmentFixture {
+        implements ConfigurationFixture {
 
     @AutoCleanup
     @Shared
-    ApplicationContext applicationContext = ApplicationContext.run(configuration, environments)
+    ApplicationContext applicationContext = ApplicationContext.run(configuration)
 }

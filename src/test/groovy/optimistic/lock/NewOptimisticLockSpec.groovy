@@ -1,14 +1,13 @@
 package optimistic.lock
 
 import optimistic.lock.testframework.ApplicationContextSpecification
-import optimistic.lock.testframework.EnvironmentFixture
 import optimistic.lock.testframework.testcontainers.MariaDbFixture
 
 import javax.persistence.EntityManager
 import javax.persistence.EntityManagerFactory
 
 class NewOptimisticLockSpec extends ApplicationContextSpecification
-        implements EnvironmentFixture, MariaDbFixture {
+        implements MariaDbFixture {
 
     @Override
     Map<String, Object> getCustomConfiguration() {
