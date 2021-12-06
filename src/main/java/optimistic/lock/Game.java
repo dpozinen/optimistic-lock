@@ -23,19 +23,6 @@ import lombok.ToString;
 @Table(name = "game")
 public class Game extends BaseEntity {
 
-  /**
-   * Business related identifier that helps a human to refer to the game.
-   *
-   * <p>Examples are "game.1" or "question.human.body.skull"
-   *
-   * <p>The business key will be used to fetch localize question texts from the RMS.
-   *
-   * <p>The question text for the business key "g.1" would be "g.1.game" by convention
-   */
-  public UUID getMessageKey() {
-    return getId();
-  }
-
   @Column(length = 150, unique = true)
   private String businessKey;
 

@@ -1,22 +1,23 @@
 package optimistic.lock
 
-
-import io.micronaut.test.extensions.spock.annotation.MicronautTest
-import jakarta.inject.Inject
+import groovy.util.logging.Slf4j
 import optimistic.lock.answeroption.AnswerOption
 import optimistic.lock.image.ImageSingleChoiceQuestion
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.transaction.annotation.Transactional
 import spock.lang.Shared
 import spock.lang.Specification
 
 import java.util.concurrent.ThreadLocalRandom
 
-@MicronautTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, classes = Application) @Slf4j
 class OptimisticLockSpec extends Specification {
 
-    @Inject
+    @Autowired
     GameRepository gameRepository
 
-    @Inject
+    @Autowired
     QuestionRepository questionRepository
 
     @Shared
@@ -51,6 +52,8 @@ class OptimisticLockSpec extends Specification {
 //        gameRepository.saveAndFlush(persistedG)
     }
 
+
+    @Transactional
     void 'test it works'() {
         given:
         Game game = gameRepository.findById(gameId).orElseThrow()

@@ -1,31 +1,16 @@
-micronaut:
-  application:
-    name: optimisticLock
 
-datasources:
-  default:
+spring:
+  datasource:
     url: "jdbc:mariadb://${MARIADB_HOST:localhost}:${MARIADB_PORT:3306}/opti?createDatabaseIfNotExist=true"
-    driverClassName: org.mariadb.jdbc.Driver
     username: root
     password: dontTellAnyone
-    initialization-fail-timeout: "${MARIADB_CONNECTION_TIMEOUT:1}"
-
-jpa:
-  default:
-    entity-scan:
-      packages: 'optimistic.lock'
-    properties:
-      hibernate:
-        hbm2ddl:
-          auto: validate
-        show_sql: true
-        dialect: org.hibernate.dialect.MariaDB103Dialect
-        physical_naming_strategy: optimistic.lock.extra.JpaPhysicalNamingStrategy
-        implicit_naming_strategy: optimistic.lock.extra.JpaImplicitNamingStrategy
-
-flyway:
-  datasources:
-    default:
-      locations: classpath:db
-
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: optimistic.lock.extra.JpaPhysicalNamingStrategy
+        implicit-strategy: optimistic.lock.extra.JpaImplicitNamingStrategy
+  flyway:
+    locations: classpath:db
 
