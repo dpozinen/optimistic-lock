@@ -21,6 +21,7 @@ class NewOptimisticLockSpec extends ApplicationContextSpecification
     }
 
     GameRepository gameRepository
+    QuestionRepository questionRepository
 
     TestDataProvider testDataProvider
     GameTestSvc gameTestSvc
@@ -31,6 +32,7 @@ class NewOptimisticLockSpec extends ApplicationContextSpecification
     @SuppressWarnings('unused')
     void setup() {
         gameRepository = applicationContext.getBean(GameRepository)
+        questionRepository = applicationContext.getBean(QuestionRepository)
 
         testDataProvider = applicationContext.getBean(TestDataProvider)
         gameTestSvc = applicationContext.getBean(GameTestSvc)

@@ -1,12 +1,15 @@
 package optimistic.lock.image;
 
+import javax.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import optimistic.lock.Question;
 import optimistic.lock.answeroption.AnswerOption;
 
-import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -15,7 +18,15 @@ import javax.persistence.*;
 @Table(name = "image_single_choice_question")
 public class ImageSingleChoiceQuestion extends Question {
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private AnswerOption validAnswer;
+    @OneToMany
+    private Set<AnswerOption> validAnswers = new HashSet<>();
+
+    public AnswerOption getValidAnswer() {
+        return validAnswers.stream().findFirst().orElse(null);
+    }
+
+    public void setValidAnswer(final AnswerOption answerOption) {
+        validAnswers.clear();
+        validAnswers.add(answerOption);
+    }
 }
