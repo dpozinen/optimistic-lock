@@ -19,8 +19,8 @@ import optimistic.lock.BaseEntity;
 
 @Setter
 @Getter
-@Entity
 @ToString
+@Entity
 @Table(name = "answer_option")
 public class AnswerOption extends BaseEntity {
 

@@ -1,0 +1,12 @@
+datasources:
+  default:
+    url: will be set during tests
+    username: will be set during tests
+    password: will be set during tests
+jpa:
+  default:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show_sql: true
